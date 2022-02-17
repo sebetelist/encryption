@@ -12,7 +12,7 @@ gpg.encoding = 'utf-8'
 # crypt
 def crypt():
     data = input('Data: ')
-
+    
     encrypted = gpg.encrypt(str(data), recipients=None,
                             symmetric='AES256',
                             passphrase=input('Write a passphrase: '),
@@ -28,18 +28,22 @@ def crypt():
 # decrypt
 def decrypt():
     file = input('File name: ') + '.key'
-    passphrase = input('Write a passphrase: ')
-    with open(file, 'r') as f:
-        text = f.read()
-        decrypted = gpg.decrypt(str(text), passphrase=passphrase)
-        if (decrypted.ok):
-            print(decrypted)
-        else:
-            print(FAIL + 'Wrong passphrase')
-        f.close()
+    try:
+        with open(file, 'r') as f:
+            text = f.read()
+            passphrase = input('Write a passphrase: ')
+            decrypted = gpg.decrypt(str(text), passphrase=passphrase)
+            if (decrypted.ok):
+                print(decrypted)
+            else:
+                print(FAIL + 'Wrong passphrase')
+            f.close()
+            exit()
+    except FileNotFoundError:
+        print(FAIL + 'File not found' + NC)
         exit()
-
-
+    
+        
 while True:
     mode = input('\nChoose mode:\n1.Crypt\n2.Decrypt\n3.Exit\n> ')
     if mode == '1':
