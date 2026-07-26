@@ -20,7 +20,7 @@ To run this tool, ensure you have the following installed:
 
 1.  **Clone the Repository:**
     ```bash
-    git clone [https://github.com/sebetelist/text-encryption](https://github.com/sebetelist/encryption)
+    git clone https://github.com/sebetelist/text-encryption
     ```
 
 2.  **Navigate to the Directory:**
